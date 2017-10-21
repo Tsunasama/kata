@@ -1,4 +1,5 @@
-package com.tsuna.designPatterns.facade;
+package com.tsuna.designPatterns.facade.chiefWork;
+
 
 import org.junit.Assert;
 import org.junit.Before;

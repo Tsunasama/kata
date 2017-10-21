@@ -1,4 +1,4 @@
-package com.tsuna.designPatterns.facade;
+package com.tsuna.designPatterns.facade.chiefWork;
 
 class Buyer {
     String buyMaterial(){
