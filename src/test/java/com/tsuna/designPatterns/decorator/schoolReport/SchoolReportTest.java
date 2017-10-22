@@ -6,26 +6,34 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class SchoolReportTest {
-    private SchoolReport report;
-    private SchoolReport reportDecorator;
-    private SchoolReport reportWithHighAndSort;
-    private SchoolReport reportWithSortAndHigh;
-
-    @Before
-    public void instantiate(){
-        report=new MySchoolReport();
+    //Using decorator to build first report
+    private SchoolReport buildDecoratedReportWithSortAndHigh(){
+        //The real report
+        SchoolReport report=new MySchoolReport();
         //Base decorator
-        reportDecorator=new ReportDecorator(report);
+        SchoolReport reportDecorator=new ReportDecorator(report);
         //Build my first decorated report
         SchoolReport highDecoratedMySchoolReport=new HignScoreDecorator(reportDecorator);
-        reportWithSortAndHigh=new SortScoreDecorator(highDecoratedMySchoolReport);
+        SchoolReport reportWithSortAndHigh=new SortScoreDecorator(highDecoratedMySchoolReport);
+        return reportWithSortAndHigh;
+    }
+
+    //Using decorator to build second report
+    private SchoolReport buildDecoratedReportWithHighAndSort(){
+        //The real report
+        SchoolReport report=new MySchoolReport();
+        //Base decorator
+        SchoolReport reportDecorator=new ReportDecorator(report);
         //Build my second decorated report
         SchoolReport sortDecoratedMyShoolReport=new SortScoreDecorator(reportDecorator);
-        reportWithHighAndSort=new HignScoreDecorator(sortDecoratedMyShoolReport);
+        SchoolReport reportWithHighAndSort=new HignScoreDecorator(sortDecoratedMyShoolReport);
+        return reportWithHighAndSort;
     }
 
     @Test
     public void testReportWithHighAndSort(){
+        SchoolReport decoratedReport = buildDecoratedReportWithHighAndSort();
+
         String report;
         report = "I got a very good grade score on PE with 92.\n";
         report += "I got a very good sort in my class which is 23.\n";
@@ -33,11 +41,12 @@ public class SchoolReportTest {
                 "English:85 Math:72 PE:92 Nature:69\n" +
                 "Please sign here:\n";
 
-        Assert.assertEquals(report,reportWithHighAndSort.report());
+        Assert.assertEquals(report,decoratedReport.report());
     }
 
     @Test
     public void testReportWithSortAndHigh(){
+        SchoolReport decoratedReport = buildDecoratedReportWithSortAndHigh();
         String report;
         report = "I got a very good sort in my class which is 23.\n";
         report += "I got a very good grade score on PE with 92.\n";
@@ -45,6 +54,6 @@ public class SchoolReportTest {
                 "English:85 Math:72 PE:92 Nature:69\n" +
                 "Please sign here:\n";
 
-        Assert.assertEquals(report,reportWithSortAndHigh.report());
+        Assert.assertEquals(report,decoratedReport.report());
     }
 }
