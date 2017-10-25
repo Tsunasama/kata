@@ -21,7 +21,7 @@ public abstract class ArraySortTestBase {
     @Test
     public void testArraySort() throws Exception {
         int[] array = new int[]{0, 7, 4, 9, 84, 10, 39, 7};
-        int[] array1 = new int[]{0, 5, 23, 123, 54, 65, 45, 23, 65};
+        int[] array1 = new int[]{0, 5, 5, 123, 54, 65, 45, 23, 5};
         int[] array2 = new int[]{0,1,2,3,4,5,6,7,8,9,10};
         int[] array3 = new int[]{0,10,9,8,7,6,5,4,3,2,1};
         context.sort(array, array.length - 1);
