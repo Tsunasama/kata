@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class GroupOrganizeTest {
+public class BranchTest {
     private Branch ceo;
     private Branch devDirector;
     private Branch saleDirector;
@@ -16,7 +14,7 @@ public class GroupOrganizeTest {
     private Branch devGroupHeader2;
     private Leaf saleMan1;
     private Leaf saleMan2;
-    private Leaf finanRole;
+    private Leaf financialRole;
     private Leaf developer1;
     private Leaf developer2;
     private Leaf developer3;
@@ -32,20 +30,35 @@ public class GroupOrganizeTest {
     }
 
     @Test
-    public void testTotalTraverse(){
+    public void testTotalTraverse() {
         Assert.assertEquals(getTotalInfo(),ceo.travers());
     }
     @Test
-    public void testDevDepartTraverse(){
+    public void testDevDepartTraverse() {
         Assert.assertEquals(getDevDepartInfo(),devDirector.travers());
     }
     @Test
-    public void testSalesDepartTraverse(){
+    public void testSalesDepartTraverse() {
         Assert.assertEquals(getSaleDepartInfo(),saleDirector.travers());
     }
     @Test
     public void testFinanDepartTraverse(){
         Assert.assertEquals(getFinianDepartInfo(),finanDirector.travers());
+    }
+    @Test
+    public void testFindMember(){
+        Assert.assertSame(developer4,ceo.findMember("Mike"));
+        Assert.assertSame(ceo,ceo.findMember("Tom"));
+        Assert.assertSame(secretary,ceo.findMember("Marry"));
+        Assert.assertEquals(null,ceo.findMember("Jay"));
+        Assert.assertSame(developer1,devGroupHeader1.findMember("Tim"));
+        Assert.assertSame(saleMan1,saleDirector.findMember("Sherry"));
+        Assert.assertEquals(null,devDirector.findMember("Sherry"));
+    }
+    @Test
+    public void testDeleteSubordinate(){
+        ceo.deleteSubordinate(finanDirector);
+        Assert.assertEquals(getFinanDeletedCircum(),ceo.travers());
     }
 
     private void instantiateMembers(){
@@ -58,7 +71,7 @@ public class GroupOrganizeTest {
         devGroupHeader2=new Branch("Julia","develop group2's header",12000);
         saleMan1=new Leaf("Sherry","sales man",8000);
         saleMan2=new Leaf("Jimmy","sales man",8000);
-        finanRole=new Leaf("Kerry","finiancial role",7000);
+        financialRole =new Leaf("Kerry","finiancial role",7000);
         developer1=new Leaf("Tim","developer",10000);
         developer2=new Leaf("Emily","developer",10000);
         developer3=new Leaf("Una","developer",10000);
@@ -78,13 +91,13 @@ public class GroupOrganizeTest {
 
     private String getDevDepartInfo(){
         String info="";
-        info+=devDirector.getInfo();
-        info+=devGroupHeader1.getInfo();
-        info+=developer1.getInfo();
-        info+=developer3.getInfo();
-        info+=devGroupHeader2.getInfo();
-        info+=developer2.getInfo();
-        info+=developer4.getInfo();
+        info+=devDirector.getInfoWords();
+        info+=devGroupHeader1.getInfoWords();
+        info+=developer1.getInfoWords();
+        info+=developer3.getInfoWords();
+        info+=devGroupHeader2.getInfoWords();
+        info+=developer2.getInfoWords();
+        info+=developer4.getInfoWords();
         return info;
     }
 
@@ -95,20 +108,20 @@ public class GroupOrganizeTest {
 
     private String getSaleDepartInfo(){
         String info="";
-        info+=saleDirector.getInfo();
-        info+=saleMan1.getInfo();
-        info+=saleMan2.getInfo();
+        info+=saleDirector.getInfoWords();
+        info+=saleMan1.getInfoWords();
+        info+=saleMan2.getInfoWords();
         return info;
     }
 
     private void buildFinanDepart(){
-        finanDirector.addSubordinate(finanRole);
+        finanDirector.addSubordinate(financialRole);
     }
 
     private String getFinianDepartInfo(){
         String info="";
-        info+=finanDirector.getInfo();
-        info+=finanRole.getInfo();
+        info+=finanDirector.getInfoWords();
+        info+= financialRole.getInfoWords();
         return info;
     }
 
@@ -121,11 +134,20 @@ public class GroupOrganizeTest {
 
     private String getTotalInfo(){
         String info="";
-        info+=ceo.getInfo();
+        info+=ceo.getInfoWords();
         info+=getDevDepartInfo();
         info+=getSaleDepartInfo();
         info+=getFinianDepartInfo();
-        info+=secretary.getInfo();
+        info+=secretary.getInfoWords();
+        return info;
+    }
+
+    private String getFinanDeletedCircum(){
+        String info="";
+        info+=ceo.getInfoWords();
+        info+=getDevDepartInfo();
+        info+=getSaleDepartInfo();
+        info+=secretary.getInfoWords();
         return info;
     }
 }
