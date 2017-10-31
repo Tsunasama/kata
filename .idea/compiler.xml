@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cata" />
+        <module name="kata" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cata" target="1.5" />
+      <module name="kata" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
