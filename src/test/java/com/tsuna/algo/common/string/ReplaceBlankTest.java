@@ -20,14 +20,17 @@ public class ReplaceBlankTest {
         char[] array2 = "      ".toCharArray();
         char[] array3 = " a b    ".toCharArray();
         char[] array4 = "a b cde".toCharArray();
+        char[] array5 = "abcde".toCharArray();
         ReplaceBlank.replaceBlank(array1, 3);
         ReplaceBlank.replaceBlank(array2, 2);
         ReplaceBlank.replaceBlank(array3, 4);
         ReplaceBlank.replaceBlank(array4, 3);
+        ReplaceBlank.replaceBlank(array5, 5);
         Assert.assertArrayEquals("a%20b".toCharArray(), array1);
         Assert.assertArrayEquals("%20%20".toCharArray(), array2);
         Assert.assertArrayEquals("%20a%20b".toCharArray(), array3);
         Assert.assertArrayEquals("a%20bde".toCharArray(), array4);
+        Assert.assertArrayEquals("abcde".toCharArray(), array5);
     }
 
     @Test(expected = RuntimeException.class)
