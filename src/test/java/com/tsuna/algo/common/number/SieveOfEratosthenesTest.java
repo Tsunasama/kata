@@ -6,7 +6,7 @@
  * Tsunasama All rights reserved.
  */
 
-package com.tsuna.algo.common.primeNumber;
+package com.tsuna.algo.common.number;
 
 import org.junit.Assert;
 import org.junit.Test;
