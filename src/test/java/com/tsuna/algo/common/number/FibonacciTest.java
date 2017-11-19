@@ -27,4 +27,10 @@ public class FibonacciTest {
     public void getFiboWithWrongParameter() {
         Fibonacci.getFiboWithLambda(0);
     }
+
+    @Test
+    public void testFind() {
+        Assert.assertEquals(55, Fibonacci.find(11));
+        Assert.assertEquals(1, Fibonacci.find(3));
+    }
 }

@@ -43,7 +43,7 @@ public class SieveOfEratosthenesTest {
         Assert.assertArrayEquals(expected, SieveOfEratosthenes.findUsingLambda(25));
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 2500)
     public void testLambdaRunningTime() {
         int[] result = SieveOfEratosthenes.findUsingLambda(1000000);
     }

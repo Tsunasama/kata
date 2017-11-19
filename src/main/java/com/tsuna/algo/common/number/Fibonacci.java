@@ -24,4 +24,12 @@ class Fibonacci {
                 .forEach(i -> result.add(i[0]));
         return result.toArray(new Integer[count]);
     }
+
+    static int find(int index) {
+        if (index == 1)
+            return 0;
+        if (index == 2)
+            return 1;
+        return find(index - 2) + find(index - 1);
+    }
 }
