@@ -48,7 +48,7 @@ class LCS {
             //make a new result LCSElelement to store mediate result
             newEles.addAll(results[i - 1][j - 1].getEles());
             newEles.add(seq1[i - 1]);
-            LCSElement lcsElement = new LCSElement(results[i][j - 1].getMatching() + 1, newEles);
+            LCSElement lcsElement = new LCSElement(results[i - 1][j - 1].getMatching() + 1, newEles);
             results[i][j] = lcsElement;
         } else {
             if (results[i][j - 1].getMatching() >= results[i - 1][j].getMatching()) {

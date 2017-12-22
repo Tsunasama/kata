@@ -21,7 +21,7 @@ public class QuickSort implements IArraySortStrategy {
             while (high>low&&array[high]>=array[0])
                 --high;
             array[low]=array[high];
-            while (low<high && array[low]<=array[0])
+            while (low < high && array[low] < array[0])
                 ++low;
             array[high]=array[low];
         }

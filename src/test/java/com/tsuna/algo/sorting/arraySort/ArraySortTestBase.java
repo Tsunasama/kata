@@ -24,14 +24,18 @@ public abstract class ArraySortTestBase {
         int[] array1 = new int[]{0, 5, 5, 123, 54, 65, 45, 23, 5};
         int[] array2 = new int[]{0,1,2,3,4,5,6,7,8,9,10};
         int[] array3 = new int[]{0,10,9,8,7,6,5,4,3,2,1};
+        int[] array4 = new int[]{0, 94, 35, 7453, 4, 23, 56, 71, 16, 4, 145, 71, 5, 134, 71, 542,
+                13, 74, 345, 68, 45, 17, 38, 41, 57, 38, 26, 28, 54, 19, 45, 0};
         context.sort(array, array.length - 1);
         context.sort(array1, array1.length - 1);
         context.sort(array2,array2.length-1);
         context.sort(array3,array3.length-1);
+        context.sort(array4, array4.length - 1);
         arraySequenceTest(array);
         arraySequenceTest(array1);
         arraySequenceTest(array2);
         arraySequenceTest(array3);
+        arraySequenceTest(array4);
     }
 
     private void arraySequenceTest(int[] array){
