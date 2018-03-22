@@ -27,7 +27,7 @@ public class PerformanceHandlerTest {
     }
 
     @Test
-    public void testUsingProxy() {
+    public void testUsingJDKProxy() {
         //using java.lang.reflect.Proxy to build proxy for all methods in target
         ForumService proxy = (ForumService) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), handler);
         //using proxy.removeTopic
@@ -40,6 +40,24 @@ public class PerformanceHandlerTest {
         result = proxy.removeForum(202);
         expected = "begin monitor...\n" +
                 "remove forum:202\n" +
+                "end record...\n";
+        Assert.assertEquals(expected, result);
+    }
+
+    @Test
+    public void testUsingCglibProxy() {
+        //create proxy
+        ForumService proxy = (ForumService) (new CglibProxy()).getProxy(ForumServiceImpl.class);
+        //using proxy.removeForum
+        String result = proxy.removeForum(101);
+        String expected = "begin monitor...\n" +
+                "remove forum:101\n" +
+                "end record...\n";
+        Assert.assertEquals(expected, result);
+        //using proxy.removeTopic
+        result = proxy.removeTopic(202);
+        expected = "begin monitor...\n" +
+                "remove topic:202\n" +
                 "end record...\n";
         Assert.assertEquals(expected, result);
     }

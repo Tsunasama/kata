@@ -11,6 +11,7 @@ package com.tsuna.designPatterns.proxy.dynamicProxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+//an implementation using "jdk dynamic proxy"
 public class PerformanceHandler implements InvocationHandler {
     //original obj(invocated obj)
     private Object target;
@@ -19,7 +20,7 @@ public class PerformanceHandler implements InvocationHandler {
         this.target = target;
     }
 
-    //Advice
+    //Advisor
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         StringBuilder result = new StringBuilder();
