@@ -3,7 +3,15 @@ package com.tsuna.algo.sorting.arraySort;
 import java.security.spec.InvalidParameterSpecException;
 
 public class QuickSort implements IArraySortStrategy {
-    public void sort(int[] array, int count) throws Exception {
+    /**
+     * It checks arguments and sorted the array
+     * Note: the first element of arry({@code array[0]} is not sorted,sorted collection index from 1
+     *
+     * @param array the origin container
+     * @param count the number of elements to be sorted
+     * @throws InvalidParameterSpecException indicates there is something wrong within the parameter
+     */
+    public void sort(int[] array, int count) throws InvalidParameterSpecException {
         if(array.length-1 < count)
             throw  new InvalidParameterSpecException("Parameter wrong!");
         quickSort(array,1,count);

@@ -1,7 +1,12 @@
 package com.tsuna.designPatterns.composite.groupOrganize.pojo;
 
+/**
+ * This class represents the information of an employee
+ */
 public class Info {
     private String name;
+    private String position;
+    private int salary;
 
     public String getName() {
         return name;
@@ -19,7 +24,7 @@ public class Info {
         this.position = position;
     }
 
-    public int getSalary() {
+    private int getSalary() {
         return salary;
     }
 
@@ -36,6 +41,4 @@ public class Info {
         return info;
     }
 
-    private String position;
-    private int salary;
 }
