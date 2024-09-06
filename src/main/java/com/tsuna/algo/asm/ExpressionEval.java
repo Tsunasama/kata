@@ -24,8 +24,8 @@ class ExpressionEval {
     }
 
     public int calculate(String s) {
-        Deque<Character> ops = new ArrayDeque();
-        Deque<Integer> nums = new ArrayDeque();
+        Deque<Character> ops = new ArrayDeque<Character>();
+        Deque<Integer> nums = new ArrayDeque<Integer>();
         nums.push(0); // 用来应对第一个算数为负数情况
         int i = 0;
         s = s.replaceAll(" ", "");
@@ -39,7 +39,7 @@ class ExpressionEval {
             } else if (sChars[i] == ')') {
                 i++;
 
-                while (ops.peek() != '(') {
+                while (!ops.isEmpty() && ops.peek() != '(') {
                     calcLast(nums, ops);
                 }
 
